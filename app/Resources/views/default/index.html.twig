@@ -42,9 +42,23 @@
 {% endblock %}
 
 {% block filter %}
+                <input type="radio" id="motie-ingetrokken" name=“filter[result]” value="motie-ingetrokken"
+                       class="cb-hidden">
+                <label class="btn btn-default" for="motie-ingetrokken">Motie ingetrokken</label>
 
+                <input type="radio" id="toezegging-gedaan" name=“filter[result]” value="toezegging-gedaan"
+                       class="cb-hidden">
+                <label class="btn btn-default" for="toezegging-gedaan">Toezegging gedaan</label>
 
+                <input type="radio" id="motie-in-en-over" name=“filter[result]” value="motie-ingetrokken-en-overgenomen"
+                       class="cb-hidden">
+                <label class="btn btn-default" for="motie-in-en-over">Motie ingetrokken en overgenomen</label>
 
+                <input type="radio" id="motie-aangenomen" name=“filter[result]” value="motie-aangenomen"
+                       class="cb-hidden">
+                <label class="btn btn-default" for="motie-aangenomen">Motie aangenomen</label>
+            </div>
+        </div>
 {% endblock %}
 
 {% block results %}
