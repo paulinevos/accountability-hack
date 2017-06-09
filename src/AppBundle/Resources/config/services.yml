@@ -1,0 +1,5 @@
+services:
+  AppBundle\Service\Searcher:
+    arguments:
+      $client: '@guzzle.client.vote_events'
+      $serializer: '@jms_serializer'
