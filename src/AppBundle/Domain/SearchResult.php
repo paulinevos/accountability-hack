@@ -3,6 +3,7 @@
 namespace AppBundle\Domain;
 
 use Shudrum\Component\ArrayFinder\ArrayFinder;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class SearchResult
 {
@@ -10,6 +11,11 @@ class SearchResult
      * @var string
      */
     private $id;
+
+    /**
+     * @var string
+     */
+    private $date;
 
     /**
      * @var string
@@ -34,14 +40,16 @@ class SearchResult
     /**
      * SearchResult constructor.
      * @param string $id
+     * @param string $date
      * @param string $result
      * @param string $classification
      * @param string $description
      * @param array  $sources
      */
-    public function __construct($id, $result, $classification, $description, array $sources)
+    public function __construct($id, $date, $result, $classification, $description, array $sources)
     {
         $this->id = $id;
+        $this->date = $date;
         $this->result = $result;
         $this->classification = $classification;
         $this->description = $description;
@@ -55,8 +63,13 @@ class SearchResult
             $sources[] = VoteEventSource::fromArray($source);
         }
 
+        foreach($result['motion']['legislative_session']['sources'] as $source) {
+            $sources[] = VoteEventSource::fromArray($source);
+        }
+
         return new static(
             $result['id'],
+            $result['end_date'],
             $result['result'],
             $result['classification'],
             isset($result['motion']['legislative_session']['description']) ? $result['motion']['legislative_session']['description'] : '',
@@ -70,6 +83,14 @@ class SearchResult
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 
     /**

@@ -43,11 +43,16 @@ class Searcher
             ]
         ]);
 
+        $searchResult = [];
+
         $results = json_decode($response->getBody()->getContents(), true);
+        $searchResult['total'] = isset($results['meta']['total'])  ? $results['meta']['total'] : null;
         $results = isset($results['vote_events']) ? $results['vote_events'] : [];
         $results = $this->serializeResults($results);
 
-        return $results;
+        $searchResult['results'] = $results;
+
+        return $searchResult;
     }
 
     /**

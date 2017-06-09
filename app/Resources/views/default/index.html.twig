@@ -33,7 +33,7 @@
 {% block content %}
     <div class="container" style="margin-top:30px;" id="main">
         <div class="jumbotron">
-            <h2>Zoek op inhoud:</h2>
+            <h2>Zoek naar moties en andere stemmingen:</h2>
             <div class="row">
                 <form class="form search-form" method="post">
                     <div class="col-md-10">
@@ -54,6 +54,11 @@
 {% block results %}
     {% if results is defined and results|length > 0 %}
         <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <strong>Resultaten: {{ results|length }} van {{ total }}</strong>
+                </div>
+            </div>
             <ul class="list-group">
                 {% for result in results %}
 
@@ -77,11 +82,28 @@
                         <div class="row" style="margin-bottom:10px;">
                             <div class="col-md-12">
                                 <span class="label label-{{ labelClass|default('default') }}">{{ result.result|raw }}</span>
+                                <span class="small" style="margin-left:10px;"><strong>Datum:</strong> {{ result.date|format('d-m-Y') }}</span></span>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                {{ result.description|raw }}
+                            <div class="col-md-8">
+                                <h4>Beschrijving</h4>
+                                {% if result.description is defined and result.description is not empty %}
+                                    {{ result.description|raw }}
+                                {% else %}
+                                    <em>Niet beschikbaar.</em>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Downloads</h4>
+                                {% for doc in result.sources %}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <a class="glyphicon glyphicon-download" href="{{ doc.url }}"></a>
+                                            {{ doc.note|title }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </li>

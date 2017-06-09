@@ -40,4 +40,20 @@ class VoteEventSource
             $source['url']
         );
     }
+
+    /**
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
 }
