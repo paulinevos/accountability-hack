@@ -3,6 +3,7 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 {% endblock %}
 
 {% block heading %}
@@ -32,9 +33,9 @@
 {% block content %}
     <div class="container" style="margin-top:30px;" id="main">
         <div class="jumbotron">
-            <h2>Zoek op onderwerp:</h2>
+            <h2>Zoek op inhoud:</h2>
             <form class="form search-form" method="post">
-                <input name="query" type="text" />
+                <input name="query" type="text"/>
                 <button class="btn btn-default">Zoek</button>
             </form>
         </div>
@@ -42,19 +43,42 @@
 {% endblock %}
 
 {% block filter %}
+    <div class="container">
+
+            <div class="center col=md-12">
+
+                <input type="checkbox" id="motie-ingetrokken" name="motie-ingetrokken" value="motie-ingetrokken"
+                       class="cb-hidden">
+                <label class="btn btn-default" for="motie-ingetrokken">Motie ingetrokken</label>
 
 
+                <input type="checkbox" id="toezegging-gedaan" name="toezegging-gedaan" value="toezegging-gedaan"
+                       class="cb-hidden">
+                <label class="btn btn-default" for="toezegging-gedaan">Toezegging gedaan</label>
+
+                <input type="checkbox" id="motie-in-en-over" name="motie-in-en-over" value="motie-in-en-over"
+                       class="cb-hidden">
+                <label class="btn btn-default" for="motie-in-en-over">Motie ingetrokken en overgenomen</label>
+
+
+                <input type="checkbox" id="motie-aangenomen" name="motie-aangenomen" value="motie-aangenomen"
+                       class="cb-hidden">
+                <label class="btn btn-default" for="motie-aangenomen">Motie aangenomen</label>
+            </div>
+        </div>
 
 {% endblock %}
 
 {% block results %}
-{% if results is defined and results|length > 0 %}
-    <ul class="list-group">
-        {% for result in results %}
-            <li class="list-group-item">{{ dump(result) }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
+    {% if results is defined and results|length > 0 %}
+           <div class="container">
+        <ul class="list-group">
+            {% for result in results %}
+                <li class="list-group-item">{{ result.result }}</li>
+            {% endfor %}
+        </ul>
+           </div>
+    {% endif %}
 {% endblock %}
 
 {% block javascripts %}
