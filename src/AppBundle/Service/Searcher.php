@@ -28,20 +28,33 @@ class Searcher
         $this->serializer = $serializer;
     }
 
-    public function search()
+    /**
+     * @param string $query
+     * @return array
+     */
+    public function search($query = '')
     {
-        $response = $this->client->request('GET', '/v0/utrecht/vote_events/search');
+        $response = $this->client->request('POST', '/v0/utrecht/vote_events/search', [
+            'json' => [
+                'query' => $query
+            ]
+        ]);
+
         $results = json_decode($response->getBody()->getContents(), true);
         $results = isset($results['vote_events']) ? $results['vote_events'] : [];
-
         $results = $this->serializeResults($results);
 
         return $results;
     }
 
+    /**
+     * @param array $results
+     * @return array
+     */
     private function serializeResults(array $results)
     {
         $resultArray = [];
+
         foreach ($results as $result) {
             $resultArray[] = SearchResult::fromArray($result);
         }

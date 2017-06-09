@@ -32,8 +32,7 @@ class DefaultController extends Controller
     public function searchAction(Request $request)
     {
         $searcher = $this->get(Searcher::class);
-
-        $results = $searcher->search();
+        $results = $searcher->search($request->get('query'));
 
         return $this->render('default/index.html.twig',
             [
