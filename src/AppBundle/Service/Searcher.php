@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Domain\SearchResult;
+use AppBundle\Search\VoteEventFilter;
 use GuzzleHttp\ClientInterface;
 use JMS\Serializer\Serializer;
 
@@ -29,14 +30,18 @@ class Searcher
     }
 
     /**
-     * @param string $query
+     * @param string          $query
+     * @param VoteEventFilter $filter
      * @return array
      */
-    public function search($query = '')
+    public function search($query = '', VoteEventFilter $filter)
     {
+        var_dump($filter);exit;
+
         $response = $this->client->request('POST', '/v0/utrecht/vote_events/search', [
             'json' => [
-                'query' => $query
+                'query'  => $query,
+                'filters' => $filter->toFilterArray()
             ]
         ]);
 
