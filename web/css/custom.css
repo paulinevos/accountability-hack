@@ -10,17 +10,18 @@
 }
 
 
-input:focus + label {
-    border-color: blue;
-}
+
 
 input:checked + label {
-    border-color: red;
+    background-color: grey;
+    border-color: grey;
 }
 
-input:focus:checked + label {
-    border-color: green;
+.btn.btn-default:hover {
+    background-color: grey;
+    border-color: grey;
 }
+
 
 .center {
     text-align: center;
