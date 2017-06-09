@@ -36,8 +36,6 @@ class Searcher
      */
     public function search($query = '', VoteEventFilter $filter)
     {
-        var_dump($filter);exit;
-
         $response = $this->client->request('POST', '/v0/utrecht/vote_events/search', [
             'json' => [
                 'query'  => $query,
