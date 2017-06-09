@@ -2,7 +2,11 @@
 
 namespace AppBundle\Domain;
 
-class VoteEventSourceCollection
+/**
+ * Class VoteEventSource
+ * @package AppBundle\Domain
+ */
+class VoteEventSource
 {
     /**
      * @var string
