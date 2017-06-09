@@ -44,13 +44,7 @@ guzzle:
 
     clients:
         vote_events:
-            base_url: %vote_events_endpoint%
-            options:
-                headers:
-                    Accept: "application/json"
-                timeout: 30
-        vote_events_search:
-            base_url: %vote_events_endpoint%
+            base_url: %api_base_url%
             options:
                 headers:
                     Accept: "application/json"

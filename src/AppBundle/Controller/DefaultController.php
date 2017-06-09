@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Service\Searcher;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Routing;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,8 +31,15 @@ class DefaultController extends Controller
      */
     public function searchAction(Request $request)
     {
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        $searcher = $this->get(Searcher::class);
+
+        $results = $searcher->search();
+
+        return $this->render('default/index.html.twig',
+            [
+                'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+                'results' => $results
+            ]
+        );
     }
 }
