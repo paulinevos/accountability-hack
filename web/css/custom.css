@@ -1,0 +1,29 @@
+.cb-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+
+
+
+input:checked + label {
+    background-color: grey;
+    border-color: grey;
+}
+
+.btn.btn-default:hover {
+    background-color: grey;
+    border-color: grey;
+}
+
+
+.center {
+    text-align: center;
+    padding: 15px;
+}
