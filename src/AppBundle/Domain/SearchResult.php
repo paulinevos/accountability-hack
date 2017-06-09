@@ -33,26 +33,26 @@ class SearchResult
 
     /**
      * SearchResult constructor.
-     * @param string                    $id
-     * @param string                    $result
-     * @param string                    $classification
-     * @param string                    $description
-     * @param VoteEventSourceCollection $sources
+     * @param string $id
+     * @param string $result
+     * @param string $classification
+     * @param string $description
+     * @param array  $sources
      */
-    public function __construct($id, $result, $classification, $description, VoteEventSourceCollection $sources)
+    public function __construct($id, $result, $classification, $description, array $sources)
     {
         $this->id = $id;
         $this->result = $result;
         $this->classification = $classification;
         $this->description = $description;
-        $this->sources = $sources
+        $this->sources = $sources;
     }
 
     public static function fromArray(array $result)
     {
         $sources = [];
         foreach ($result['sources'] as $source) {
-            $sources[] = VoteEventSourceCollection::fromArray($source);
+            $sources[] = VoteEventSource::fromArray($source);
         }
 
         return new static(

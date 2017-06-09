@@ -9,7 +9,9 @@
     width: 1px;
 }
 
-
+body {
+font-family: "Segoe UI","Source Sans Pro",Calibri,Candara,Arial,sans-serif
+}
 
 
 input:checked + label {
@@ -26,4 +28,49 @@ input:checked + label {
 .center {
     text-align: center;
     padding: 15px;
+}
+
+p {
+    color:black;
+    font-weight: 400;
+    font-size: 18px;
+    max-width:300px;
+    padding-top: 30px;
+}
+
+
+.blue > span {
+    background-color: blue;
+    border-radius: 4px;
+    padding: 10px;
+    float:left;
+    }
+
+
+.green > span{
+    background-color:green;
+    padding: 10px;
+    float:left;
+    border-radius: 4px;
+}
+
+.red > span {
+    background-color: red;
+    padding: 10px;
+    float:left;
+    border-radius: 4px;
+}
+
+.orange > span {
+    background-color: orange;
+    padding: 10px;
+    float:left;
+    border-radius: 4px;
+}
+
+.pink > span {
+    background-color: pink;
+    padding: 10px;
+    float:left;
+    border-radius: 4px;
 }
