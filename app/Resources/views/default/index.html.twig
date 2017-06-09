@@ -33,33 +33,22 @@
 {% block content %}
     <div class="container" style="margin-top:30px;" id="main">
         <div class="jumbotron">
-            <h2>Zoek op onderwerp:</h2>
-            <form class="form search-form" method="post">
-                <input name="query" type="text"/>
-                <button class="btn btn-default">Zoek</button>
-            </form>
+            <h2>Zoek op inhoud:</h2>
+            <div class="row">
+                <form class="form search-form" method="post">
+                    <div class="col-md-10">
+                        <input name="query" type="text" class="form-control" placeholder="Vul hier uw termen in" />
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-default">Zoeken <icon style="padding-left:5px;" class="glyphicon glyphicon-search"></icon></button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}
 
 {% block filter %}
-    {#<input type="radio" id="motie-ingetrokken" name=“filter[result]” value="motie-ingetrokken"#}
-    {#class="cb-hidden">#}
-    {#<label class="btn btn-default" for="motie-ingetrokken">Motie ingetrokken</label>#}
-
-    {#<input type="radio" id="toezegging-gedaan" name=“filter[result]” value="toezegging-gedaan"#}
-    {#class="cb-hidden">#}
-    {#<label class="btn btn-default" for="toezegging-gedaan">Toezegging gedaan</label>#}
-
-    {#<input type="radio" id="motie-in-en-over" name=“filter[result]” value="motie-ingetrokken-en-overgenomen"#}
-    {#class="cb-hidden">#}
-    {#<label class="btn btn-default" for="motie-in-en-over">Motie ingetrokken en overgenomen</label>#}
-
-    {#<input type="radio" id="motie-aangenomen" name=“filter[result]” value="motie-aangenomen"#}
-    {#class="cb-hidden">#}
-    {#<label class="btn btn-default" for="motie-aangenomen">Motie aangenomen</label>#}
-    </div>
-    </div>
 {% endblock %}
 
 {% block results %}
@@ -68,12 +57,34 @@
             <ul class="list-group">
                 {% for result in results %}
 
-                    <li class="list-group-item
-            {% if result.result == 'Motie verworpen' %}label blue{% endif %}
-            {% if result.result == 'Motie aangenomen' %}label orange{% endif %}
-            {% if result.result == 'Motie ingetrokken' %}label green{% endif %}
-            {% if result.result == 'Motie ingetrokken en overgenomen' %}label pink{% endif %}
-            {% if result.result == 'Toezegging gedaan' %}label red{% endif %}"><span>{{ result.result|raw }}</span> - <p>{{ result.description|raw }}</p></li>
+                    {% if result.result == 'Motie verworpen' %}
+                        {% set labelclass = 'red' %}
+                    {% endif %}
+                    {% if result.result == 'Motie aangenomen' %}
+                        {% set labelclass = 'green' %}
+                    {% endif %}
+                    {% if result.result == 'Motie ingetrokken' %}
+                        {% set labelclass = 'orange' %}
+                    {% endif %}
+                    {% if result.result == 'Motie ingetrokken en overgenomen' %}
+                        {% set labelclass = 'blue' %}
+                    {% endif %}
+                    {% if result.result == 'Toezegging gedaan' %}
+                        {% set labelclass = 'pink' %}
+                    {% endif %}
+
+                    <li class="list-group-item">
+                        <div class="row" style="margin-bottom:10px;">
+                            <div class="col-md-12">
+                                <span class="label label-{{ labelClass|default('default') }}">{{ result.result|raw }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{ result.description|raw }}
+                            </div>
+                        </div>
+                    </li>
 
                 {% endfor %}
             </ul>

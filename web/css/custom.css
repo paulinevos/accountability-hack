@@ -9,9 +9,9 @@
     width: 1px;
 }
 
-body {
-font-family: "Segoe UI","Source Sans Pro",Calibri,Candara,Arial,sans-serif
-}
+/*body {*/
+/*font-family: "Segoe UI","Source Sans Pro",Calibri,Candara,Arial,sans-serif*/
+/*}*/
 
 
 input:checked + label {
@@ -39,37 +39,37 @@ p {
 }
 
 
-.blue > span {
-    background-color: blue;
+.blue {
+    background-color: blue !important;
     border-radius: 4px;
     padding: 10px;
     float:left;
-    }
+}
 
 
-.green > span{
-    background-color:green;
+.green {
+    background-color:green !important;
     padding: 10px;
     float:left;
     border-radius: 4px;
 }
 
-.red > span {
+.red {
     background-color: red;
     padding: 10px;
     float:left;
     border-radius: 4px;
 }
 
-.orange > span {
+.orange {
     background-color: orange;
     padding: 10px;
     float:left;
     border-radius: 4px;
 }
 
-.pink > span {
-    background-color: pink;
+.pink {
+    background-color: pink !important;
     padding: 10px;
     float:left;
     border-radius: 4px;
