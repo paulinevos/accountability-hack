@@ -22,16 +22,23 @@ class SearchResult
     private $classification;
 
     /**
+     * @var string
+     */
+    private $description;
+
+    /**
      * SearchResult constructor.
      * @param string $id
      * @param string $result
      * @param string $classification
+     * @param string $description
      */
-    public function __construct($id, $result, $classification)
+    public function __construct($id, $result, $classification, $description)
     {
         $this->id = $id;
         $this->result = $result;
         $this->classification = $classification;
+        $this->description = $description;
     }
 
     public static function fromArray(array $result)
@@ -39,7 +46,8 @@ class SearchResult
         return new static(
             $result['id'],
             $result['result'],
-            $result['classification']
+            $result['classification'],
+            isset($result['motion']['legislative_session']['description']) ? $result['motion']['legislative_session']['description'] : ''
         );
     }
 
