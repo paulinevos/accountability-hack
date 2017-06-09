@@ -2,7 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Search\VoteEventFilter;
 use AppBundle\Service\Searcher;
+use JMS\Serializer\Serializer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Routing;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,8 +33,19 @@ class DefaultController extends Controller
      */
     public function searchAction(Request $request)
     {
+        /** @var Serializer $serializer */
+        $serializer = $this->get('jms_serializer');
+
         $searcher = $this->get(Searcher::class);
-        $results = $searcher->search($request->get('query'));
+
+        $filter = $request->get('filter');
+        $filter = $serializer->deserialize(
+            json_encode($request->get('filter')),
+            VoteEventFilter::class,
+            'json'
+        );
+
+        $results = $searcher->search($request->get('query'), $filter);
 
         return $this->render('default/index.html.twig',
             [

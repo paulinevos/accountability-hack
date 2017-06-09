@@ -28,6 +28,7 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "jms/serializer": "^1.7",
         "jms/serializer-bundle": "^2.0",
+        "myclabs/php-enum": "^1.5",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",
         "shudrum/array-finder": "^1.1",
