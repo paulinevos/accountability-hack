@@ -66,6 +66,7 @@
     <ul class="list-group">
         {% for result in results %}
             <li class="list-group-item">{{ dump(result) }}</li>
+            {{ result.description }}
         {% endfor %}
     </ul>
 {% endif %}

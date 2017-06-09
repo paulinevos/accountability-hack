@@ -27,27 +27,40 @@ class SearchResult
     private $description;
 
     /**
-     * SearchResult constructor.
-     * @param string $id
-     * @param string $result
-     * @param string $classification
-     * @param string $description
+     * @var VoteEventSourceCollection
      */
-    public function __construct($id, $result, $classification, $description)
+    private $sources;
+
+    /**
+     * SearchResult constructor.
+     * @param string                    $id
+     * @param string                    $result
+     * @param string                    $classification
+     * @param string                    $description
+     * @param VoteEventSourceCollection $sources
+     */
+    public function __construct($id, $result, $classification, $description, VoteEventSourceCollection $sources)
     {
         $this->id = $id;
         $this->result = $result;
         $this->classification = $classification;
         $this->description = $description;
+        $this->sources = $sources
     }
 
     public static function fromArray(array $result)
     {
+        $sources = [];
+        foreach ($result['sources'] as $source) {
+            $sources[] = VoteEventSourceCollection::fromArray($source);
+        }
+
         return new static(
             $result['id'],
             $result['result'],
             $result['classification'],
-            isset($result['motion']['legislative_session']['description']) ? $result['motion']['legislative_session']['description'] : ''
+            isset($result['motion']['legislative_session']['description']) ? $result['motion']['legislative_session']['description'] : '',
+            $sources
         );
     }
 
@@ -73,5 +86,21 @@ class SearchResult
     public function getClassification()
     {
         return $this->classification;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return VoteEventSourceCollection
+     */
+    public function getSources()
+    {
+        return $this->sources;
     }
 }
