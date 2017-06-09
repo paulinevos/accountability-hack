@@ -41,6 +41,17 @@
     </div>
 {% endblock %}
 
+
+{% block results %}
+{% if results is defined and results|length > 0 %}
+    <ul class="list-group">
+        {% for result in results %}
+            <li class="list-group-item">{{ result|e }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
+
 {% block javascripts %}
     <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}" type="application/javascript"></script>
     <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}" type="application/javascript"></script>
